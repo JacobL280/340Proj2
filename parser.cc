@@ -67,6 +67,7 @@ void Parser::parse_input() {
 
   Token t;
   t = expect(INPUT_TEXT);
+  t = expect(END_OF_FILE);
 }
 
 void Parser::parse_tokens_section() {
@@ -93,7 +94,7 @@ void Parser::parse_token() {
   parse_expr();
 }
 
-void Parser::parse_expr() {
+struct REG * Parser::parse_expr() {
   Token t = lexer.peek(1);
   if (t.token_type == LPAREN) {
     t = expect(LPAREN);
@@ -139,6 +140,8 @@ int main()
     // If you declare another lexer object, lexical analysis will not work correctly
     Parser parser;
 
-	parser.ConsumeAllInput();
+	//parser.ConsumeAllInput();
+
+	parser.parse_input();
 	
 }
